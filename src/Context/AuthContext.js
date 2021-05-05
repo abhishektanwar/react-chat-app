@@ -80,6 +80,7 @@ export function AuthProvider({children}) {
 				photoURL:"",
 				status:"",
 				messages:[{notificationId:"",number:0}],
+				contacts:[],
                 createdAt:firebase.firestore.FieldValue.serverTimestamp()
             })
 		})

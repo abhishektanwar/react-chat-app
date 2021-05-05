@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useAuth } from "../../Context/AuthContext"
 import { auth,firestore } from "../../Firebase/firebase"
 import Sidebar from '../Sidebar/Sidebar'
 import ChatBox from '../ChatBox/ChatBox'
 import './home.css'
+import Modal from '../../Components/Sidebar/Modal'
 // import {}
 const Home = () => {
 
@@ -23,6 +24,12 @@ const Home = () => {
 		e.preventDefault()
 		logout()
 	}
+	const closeModalHandler = () => {
+		console.log("ckis")
+		setShow(false)
+	}
+	const [show,setShow] = useState(false)
+	const [modalName,setModalName] = useState('')
 	const docs = []
 	async function handleshowData(){
 		firestore.collection(`users`).onSnapshot((snap)=>{
@@ -41,12 +48,21 @@ const Home = () => {
 	
 	return (
 		<div className="app__body">
+			{/* <div>
+				{show ? <div className="backdrop"></div>:null}
+				<button onClick={()=>{setShow(true)}}>Open Modal</button>
+				<Modal show={show} closeModalHandler={closeModalHandler}/>
+			</div> */}
 			{/* <button type="submit" onClick={handleSubmit}>Sign up</button>
 			<button type="submit" onClick={handleLogout}>Logout</button>
 			{currentUser.uid}
 			<button type="submit" onClick={handleshowData}>Show data</button> */}
-			<Sidebar />
+			<Sidebar setShow={setShow} setModalName={setModalName} />
 			<ChatBox />
+			{show && 
+			<Modal modalName={modalName} closeModalHandler={closeModalHandler} setShow={setShow} setModalName={setModalName} />}
+			
+
 		</div>
 	)
 }
