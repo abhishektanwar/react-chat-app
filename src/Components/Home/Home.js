@@ -1,6 +1,9 @@
 import React from 'react'
 import { useAuth } from "../../Context/AuthContext"
 import { auth,firestore } from "../../Firebase/firebase"
+import Sidebar from '../Sidebar/Sidebar'
+import ChatBox from '../ChatBox/ChatBox'
+import './home.css'
 // import {}
 const Home = () => {
 
@@ -20,11 +23,30 @@ const Home = () => {
 		e.preventDefault()
 		logout()
 	}
+	const docs = []
+	async function handleshowData(){
+		firestore.collection(`users`).onSnapshot((snap)=>{
+			console.log(snap)
+			snap.forEach(doc=>{
+				if(doc.id==currentUser.uid){
+					docs.push(doc.data())
+				}
+				
+			})
+		})
+		// console.log(t)
+		console.log(docs)
+		// console.log(s)
+	}
+	
 	return (
-		<div>
-			<button type="submit" onClick={handleSubmit}>Sign up</button>
+		<div className="app__body">
+			{/* <button type="submit" onClick={handleSubmit}>Sign up</button>
 			<button type="submit" onClick={handleLogout}>Logout</button>
 			{currentUser.uid}
+			<button type="submit" onClick={handleshowData}>Show data</button> */}
+			<Sidebar />
+			<ChatBox />
 		</div>
 	)
 }

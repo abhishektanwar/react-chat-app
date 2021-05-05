@@ -9,7 +9,7 @@ import firebase from 'firebase'
 import { toast,ToastContainer } from 'react-toastify'
 import { useAuth } from './Context/AuthContext'
 import { AuthProvider } from './Context/AuthContext';
-
+import Sidebar from './Components/Sidebar/Sidebar'
 function App() {
   const showToast = (type,message) => {
     switch(type){
@@ -38,6 +38,7 @@ function App() {
               <Route exact path="/login" component = {()=><Login showToast={showToast}/>} />
               <Route exact path="/signup" component = {()=><SignUp showToast={showToast}/>} />
               <Route exact path="/chat" component = {()=><Chat showToast={showToast}/>} />
+              <Route exact path="/home" component = {()=><Home showToast={showToast}/>} />
             
             
             </Switch>

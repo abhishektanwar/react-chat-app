@@ -90,6 +90,14 @@ export function AuthProvider({children}) {
 		// console.log('uid',auth.currentUser.uid)
 		// console.log(curr)
 		return auth.signInWithEmailAndPassword(email, password)
+		// .then(async user=>{
+		// 	// console.log(user)
+		// 	await firebase.firestore().collection('users')
+		// 	.where('id',"==",user.uid).get()
+		// 	.then(snapshot=>{
+		// 		console.log(snapshot)
+		// 	})
+		// })
 	}
 
 	function logout(){

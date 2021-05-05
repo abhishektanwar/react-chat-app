@@ -1,0 +1,99 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar__component{
+	/* background-color: purple; */
+	flex: 0.35;
+	height: 100%;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #22303C;
+}
+
+.sidebar__component .header{
+	width: 100%;
+	flex: 0.10;
+	background-color: #22303C;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0rem 1rem;
+}
+
+.sidebar__component > .header > p{
+	flex: 1;
+	margin-top: -10px;
+}
+
+@media screen and (max-width:600px){
+	.sidebar__component{
+		flex: 1;
+	}
+}
+
+.sidebar_chatbody{
+	flex: 0.90;
+	width: 100%;
+	overflow: scroll;
+
+}
+
+.sidebar_chatbody::-webkit-scrollbar{
+	display: none;
+	width: 0px;
+}
+
+.conversation_button {
+	/* background-color: blue; */
+	height: 40px;
+	display: flex;
+	padding: 0px 10px;
+	width: 100%;
+	border-bottom: 2px solid black;
+}
+
+.conversation__contact_buttons{
+	color: white;
+	border: none;
+	width: 50%;
+	background: transparent;
+	/* text-align: center; */
+	border: none;
+	height: 40px;
+	outline: none;	
+	cursor: pointer;
+	font-size: 1.1rem;
+}
+
+.conversation__contact_buttons:hover{
+	border: 2px solid white;
+	border-bottom: none;
+	border-radius: 5px;
+	/* background: pink; */
+}
+
+.activeKey{
+	background: black;
+	border: 2px solid white;
+	border-bottom: none;
+}
+
+/* new conversation contact div */
+
+.new__converwsation__contact{
+	height: 40px;
+}
+.new__converwsation__contact > button{
+	width: 100%;
+	height: 100%;
+	background-color: turquoise;
+	font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
