@@ -1,0 +1,92 @@
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.main_div{
+	display: grid;
+	place-items: center;
+}
+
+.inner_div{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	background-color:#15202B ;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 50px 70px -20px rgba(0,0,0,0.8);
+}
+
+.image_element{
+	object-fit: contain;
+	background-image: url("../../Images/chatbackground.jpg");
+	height: 300px;
+	width: 300px;
+	background-position: center;
+	background-size: cover;
+	border-radius: 50%;
+}
+
+.inner_div > form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.inner_div > form > input{
+	padding: 1rem 2rem;
+	border-radius: 20px;
+	border:none;
+	margin-bottom: 30px;
+	margin-left: 20px;
+	font-size: 1.1rem;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.inner_div > form > button {
+	padding: 0.5rem 4rem;
+	border-radius: 10px;
+	cursor: pointer;
+	border: 2px solid white;
+	outline: none;
+	background-color: #15202B;
+	color: white;
+	font-size: 1.2rem;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-weight: bold;
+}
+
+.login_form p,span{
+	margin-top: 20px;
+	color: white;
+}
+
+#signup-link{
+	color:#fff;
+	margin-top: 35px;
+}
+
+@media screen and (max-width : 700px)
+{
+    .inner_div{
+        flex-direction: column;
+    }
+    .image_element{
+        height:150px;
+        width:150px;
+    }
+    .inner_div > form > input
+    {
+        margin-left: 0;
+        font-size: 0.80rem;
+    }
+    .inner_div > form > button
+    {
+        font-size: 1rem;
+    }
+}
