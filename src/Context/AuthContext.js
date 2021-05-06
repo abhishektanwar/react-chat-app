@@ -81,7 +81,8 @@ export function AuthProvider({children}) {
 				status:"",
 				messages:[{notificationId:"",number:0}],
 				contacts:[],
-                createdAt:firebase.firestore.FieldValue.serverTimestamp()
+                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+				conversations:[]
             })
 		})
 	}

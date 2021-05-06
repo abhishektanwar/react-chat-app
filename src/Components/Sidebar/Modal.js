@@ -29,19 +29,62 @@ import "./Modal.css"
 // export default Modal
 
 
-import React,{useRef} from 'react'
+import React,{useRef,useState} from 'react'
 // import { motion } from 'framer-motion'
-import { auth,firestore } from "../../Firebase/firebase"
+// import { auth,firestore } from "../../Firebase/firebase"
 import firebase from 'firebase'
-import {useAuth} from '../../Context/AuthContext'
+// import {useAuth} from '../../Context/AuthContext'
+import { auth,firestore } from '../../Firebase/firebase'
+import { useAuth } from '../../Context/AuthContext'
+import useFirestore from '../../Hooks/useFireStore'
+
 const Modal = ({closeModalHandler,setShow,modalName}) => {
 	const idRef=useRef()
 	const nameRef = useRef()
 	const {currentUser} = useAuth()
+	const {docs} = useFirestore('users')
+	const [selectedContactIds,setSelectedContactIds] = useState([])
 	const handleClick = (e) =>{
 		if(e.target.classList.contains('backdrop')){
 			setShow(false)
 		}
+	}
+
+	function handleCheckboxChange(contactId){
+		setSelectedContactIds(prevSelectedContactIds => {
+			if(prevSelectedContactIds.includes(contactId)){
+				return prevSelectedContactIds.filter(prevId => {
+					return contactId !== prevId
+				})
+			}else{
+				return [...prevSelectedContactIds,contactId]
+			}
+		})
+		console.log(selectedContactIds)
+	}
+
+	function createConversation(recipients){
+		firestore.collection('conversations').add({
+			// contactId:contactId
+		})
+		.then(res=>{
+			firestore.collection('conversations').doc(res.id).set({
+				recipients:recipients,
+				messages:[]
+			})
+			firestore.collection('users').doc(currentUser.uid).update({
+				conversations:firebase.firestore.FieldValue.arrayUnion(res.id)
+
+			})
+		})
+	}
+
+	function handleCreateConversation(e){
+		e.preventDefault()
+		console.log(selectedContactIds)
+		selectedContactIds.push(currentUser.uid)
+		createConversation(selectedContactIds)
+		setShow(false)
 	}
 
 	function createData(e){
@@ -103,7 +146,7 @@ const Modal = ({closeModalHandler,setShow,modalName}) => {
 					<p>Create Conversation</p>
 					<button class="close" onClick={closeModalHandler}>x</button>
 				</div>
-				<div className="modal-body">
+				{/* <div className="modal-body">
 					<form>
 						<div className="form-group">
 							<label className="form-label">Id</label>
@@ -115,8 +158,41 @@ const Modal = ({closeModalHandler,setShow,modalName}) => {
 						</div>
 						
 						<button className="btn btn-primary" onClick={createData}>Create</button>
-					</form>
-				</div>
+					</form> */}
+					<div>
+						<form onSubmit={handleCreateConversation}>
+						{docs && docs.map(doc=>{
+							return doc.contacts.map(contct => {
+								return (
+								// <form>
+								
+									<div className="form-group" key={contct.id}>
+										<div className="form-check" >
+
+										
+										<input 
+											key={contct.id}
+											type="checkbox" 
+											id={contct.id} 
+											className="form-check-input" 
+											value={selectedContactIds.includes(contct.id)}
+											onChange={()=>{handleCheckboxChange(contct.id)}}
+										/>
+										<label for={contct.id} className="form-check-label" >{contct.name}</label>
+										{/* <h2>{contct.id}</h2>
+										<p>{contct.name}</p> */}
+									</div>
+									</div>
+									
+									// </form>
+								)
+								
+							})
+						})}
+						<button className="btn btn-primary" style={{marginLeft:'18px',marginBottom:'18px'}} type="submit">Create</button>
+						</form>
+					</div>
+				{/* </div> */}
 				
 			</div>
 		</div>

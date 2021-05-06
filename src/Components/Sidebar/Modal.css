@@ -67,7 +67,16 @@
 
 form{
 	display: block;
-margin-top: 0em;
+	margin-top: 1em;
+	margin-bottom: 1er;
+
+}
+
+.form-check{
+	position: relative;
+	display: block;
+	padding-left: 2.25rem;
+
 }
 
 .form-group{
@@ -78,6 +87,21 @@ margin-top: 0em;
 .form-label{
 	display: inline-block;
 	margin-bottom: .5rem;
+}
+
+input[type=checkbox]{
+	box-sizing: border-box;
+	padding:0 ;
+}
+
+.form-check-input{
+	position: absolute;
+	margin-top: 0.3rem;
+	margin-left: -1.25rem;
+}
+
+.form-check-label label{
+	display: inline-block;
 }
 
 .form-control{
