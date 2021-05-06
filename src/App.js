@@ -9,6 +9,8 @@ import firebase from 'firebase'
 import { toast,ToastContainer } from 'react-toastify'
 import { useAuth } from './Context/AuthContext'
 import { AuthProvider } from './Context/AuthContext';
+import { ConversationProvider } from './Context/ConversationContext';
+
 import Sidebar from './Components/Sidebar/Sidebar'
 function App() {
   const showToast = (type,message) => {
@@ -31,6 +33,7 @@ function App() {
         hideProgressBar={true}
         position={toast.POSITION.TOP_RIGHT}
       />
+      <ConversationProvider>
         <AuthProvider>
           <div className="App">
             <Switch>
@@ -45,6 +48,7 @@ function App() {
             
           </div>
         </AuthProvider>
+        </ConversationProvider>
     </Router>
     
     

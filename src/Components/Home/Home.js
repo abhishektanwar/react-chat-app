@@ -6,9 +6,11 @@ import ChatBox from '../ChatBox/ChatBox'
 import './home.css'
 import Modal from '../../Components/Sidebar/Modal'
 import { ConversationProvider } from '../../Context/ConversationContext';
+import { useConversation } from '../../Context/ConversationContext'
 
 // import {}
 const Home = () => {
+	const {showChat,setShowChat,setData,UserId,userName,selectedConversationIndex} = useConversation()
 	const [showChatBox,setShowChatBox] = useState(false)
 	const {signup,logout,currentUser} = useAuth()
 	async function handleSubmit(e){
@@ -49,7 +51,7 @@ const Home = () => {
 	}
 	
 	return (
-		<ConversationProvider>
+		// <ConversationProvider>
 		<div className="app__body">
 			{/* <div>
 				{show ? <div className="backdrop"></div>:null}
@@ -61,13 +63,13 @@ const Home = () => {
 			{currentUser.uid}
 			<button type="submit" onClick={handleshowData}>Show data</button> */}
 			<Sidebar setShow={setShow} setModalName={setModalName} />
-			{/* <ChatBox /> */}
+			{showChat && <ChatBox />}
 			{show && 
 			<Modal modalName={modalName} closeModalHandler={closeModalHandler} setShow={setShow} setModalName={setModalName} />}
 		
 
 		</div>
-		</ConversationProvider>
+		// </ConversationProvider>
 	)
 }
 

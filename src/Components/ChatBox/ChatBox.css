@@ -37,7 +37,7 @@
 
 .chatbody{
 	flex: 0.83;
-	background-image: url("../../Images/chatbackground.jpg");
+	background-image: url("../../Images/chatBg.png");
 	background-position: center;
 	background-repeat: repeat;
 	overflow: auto;
@@ -64,13 +64,22 @@
     flex:1;
     
     padding:0.5rem;
-    border-radius:1.5rem;
+    /* border-radius:1.5rem; */
+	border-bottom-left-radius: 1.5rem;
+	border-top-left-radius: 1.5rem;
     border:none;
     outline:none;
 }
 
 .chat__footer > form > button
 {
-    display: none;
+    display: block;
+	border: none;
+	outline: none;
+	padding: 0.5rem;
+	border-bottom-right-radius: 1.5rem;
+	border-top-right-radius: 1.5rem;
+	font-size: 1.1rem;
+	cursor: pointer;
 }
 
