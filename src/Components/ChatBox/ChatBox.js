@@ -7,7 +7,7 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon'
 import './ChatBox.css'
 const ChatBox = () => {
 	return (
-		<div className="clat__body">
+		<div className="chatbox__body">
 			<div className="header">
 				<Avatar src="https://avatars.dicebear.com/api/human/123.svg" />
 				<div className="channel__info">
