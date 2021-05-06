@@ -5,7 +5,10 @@ import useFirestore from '../../Hooks/useFireStore'
 import useConversationData from '../../Hooks/useConversationData'
 import {firestore} from '../../Firebase/firebase'
 function Conversations() {
-	const {docs} = useFirestore('users')
+	const {docs,conversationId} = useFirestore('users')
+	// console.log('docs',docs);
+	// console.log('conversationId',conversationId,typeof conversationId);
+	// const {dataFromConversation} = useConversationData('conversations',docs)
 	const conversations=[]
 	const [res,setRes] = useState([])
 	const [conversationsWithRecipients,setConversationsWithRecipients]=useState([])
@@ -54,7 +57,9 @@ function Conversations() {
 			{res && res.map(doc=>
 			{ 
 				// return doc.contacts.map(rt=>{
-			return(
+					{console.log(doc)}
+				return(
+				
 				<h2>{doc}</h2>
 				// <Chat name={rt.name} id={rt.id} />
 			)
