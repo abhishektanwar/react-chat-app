@@ -103,7 +103,7 @@ function Conversations() {
 						)
 					}else{
 						return(
-							<h2 style={{color:'white'}}>{convRecepient[0].id}</h2>
+							<h2 style={{color:'white'}}>{convRecepient[0].id } group</h2>
 						)
 					}
 					

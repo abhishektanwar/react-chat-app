@@ -10,8 +10,14 @@ function ConversationComp({userId,docs,conversationId}) {
 	console.log(UserId,userName,selectedConversationIndex,"selectedConversationIndex")
 	// const {docs} = useFirestore	
 	console.log(docs[0].contacts,"docs")
-	// const {currentUser} = useAuth()
-	const userid = userId[0]
+	const {currentUser} = useAuth()
+	var userid
+	if(userId[0]!==currentUser.uid){
+		userid=userId[0]
+	}else{
+		userid=userId[1]
+	}
+	// const userid = userId[0]
 	var name
 	for(var i=0;i<docs[0].contacts.length;i++){
 		if(docs[0].contacts[i].id===userid){

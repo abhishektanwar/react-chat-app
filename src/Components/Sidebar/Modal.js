@@ -64,18 +64,35 @@ const Modal = ({closeModalHandler,setShow,modalName}) => {
 	}
 
 	function createConversation(recipients){
+		console.log("recipien",recipients)
 		firestore.collection('conversations').add({
 			// contactId:contactId
 		})
 		.then(res=>{
+			console.log("res.id",res.id);
 			firestore.collection('conversations').doc(res.id).set({
 				recipients:recipients,
 				messages:[]
 			})
+			// firestore.collection('users').doc(currentUser.uid).update({
+			// 	conversations:firebase.firestore.FieldValue.arrayUnion(res.id)
+
+			// })
+			console.log("typeof recipients",typeof recipients);
+			console.log("typeof recipients",recipients);
+			Object.values(recipients).forEach(recipient => {
+				if(recipient!==currentUser.uid){
+					firestore.collection('users').doc(recipient).update({
+						conversations:firebase.firestore.FieldValue.arrayUnion(res.id)
+					})
+				}
+				
+			});
 			firestore.collection('users').doc(currentUser.uid).update({
 				conversations:firebase.firestore.FieldValue.arrayUnion(res.id)
 
 			})
+			
 		})
 	}
 

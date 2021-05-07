@@ -83,3 +83,39 @@
 	cursor: pointer;
 }
 
+.chat__main__div{
+	/* margin: 1rem 0; */
+	display: flex;
+	flex-direction: column;
+	align-self: flex-end;
+	border-radius: 10px;
+	background-color: var(--secondary-background-color);
+	padding: 1rem;
+	color: white;
+	width: fit-content;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+.loggedin_sender{
+	color: white;
+	text-align: right;
+	background: var(--secondary-background-color);
+
+}
+
+.other_sender{
+	color:white;
+	text-align: left;
+	background: var(--secondary-background-color);
+}
+
+.sender-color{
+	color: black;
+}
+
+.main_chat_body{
+	display: flex;
+	flex-direction: column;
+	
+}
