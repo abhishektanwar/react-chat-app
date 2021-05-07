@@ -10,7 +10,7 @@ import { toast,ToastContainer } from 'react-toastify'
 import { useAuth } from './Context/AuthContext'
 import { AuthProvider } from './Context/AuthContext';
 import { ConversationProvider } from './Context/ConversationContext';
-
+import PrivateRoute from './Components/PrivateRoutes'
 import Sidebar from './Components/Sidebar/Sidebar'
 function App() {
   const showToast = (type,message) => {
@@ -37,11 +37,11 @@ function App() {
         <AuthProvider>
           <div className="App">
             <Switch>
-              <Route exact path="/" component = {()=><Home/>} />
-              <Route exact path="/login" component = {()=><Login showToast={showToast}/>} />
-              <Route exact path="/signup" component = {()=><SignUp showToast={showToast}/>} />
-              <Route exact path="/chat" component = {()=><Chat showToast={showToast}/>} />
-              <Route exact path="/home" component = {()=><Home showToast={showToast}/>} />
+              <PrivateRoute exact path="/" component = {()=><Home/>} />
+              <Route  path="/login" component = {()=><Login showToast={showToast}/>} />
+              <Route  path="/signup" component = {()=><SignUp showToast={showToast}/>} />
+              <Route  path="/chat" component = {()=><Chat showToast={showToast}/>} />
+              {/* <Route exact path="/home" component = {()=><Home showToast={showToast}/>} /> */}
             
             
             </Switch>

@@ -13,6 +13,7 @@ function Conversations() {
 	// const {dataFromConversation} = useConversationData('conversations',docs)
 	const conversations=[]
 	const conversationArray=[]
+	const [loading,setLoading] = useState(true)
 	// res is conversation ids of logged in user
 
 	const [res,setRes] = useState([])
@@ -26,6 +27,8 @@ function Conversations() {
 	function dataFetcher(){
 		// conversations.push(docs[0].conversations)
 		// console.log(docs[0].conversations)
+		// taking conversation ids of loggedin user and putting all
+		// conversation in setRes/conversation
 		docs[0].conversations.forEach(conver => conversations.push(conver))
 		console.log(conversations)
 		setRes(conversations)
@@ -82,6 +85,12 @@ function Conversations() {
 			})
 		
 	},[res,conversationsWithRecipients])
+
+	useEffect(()=>{
+		setTimeout(()=>{
+			dataFetcher()
+		},4000)
+	},[])
 	return (
 		<div className="sidebar_chatbody">
 			{/* {console.log(Object.values(conversationsWithRecipients),"conversationsWithRecipients")}
@@ -128,7 +137,7 @@ function Conversations() {
 			)
 		})} */}
 
-			<button onClick={dataFetcher}>clickme</button>
+			<button id="btnn" onClick={dataFetcher}>clickme</button>
 			
 		</div>
 	)
