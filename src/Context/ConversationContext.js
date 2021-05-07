@@ -11,6 +11,8 @@ export function ConversationProvider({children}) {
 	const [UserId,setUserId] = useState('')
 	const [userName,setUserName] = useState('')
 	const [selectedConversationIndex,setSelectedConversationIndex] = useState('')
+	const [isGroupChat,setIsGroupChat] = useState(false)
+	const [groupMemberDetails,setGroupMemberDetails] = useState([])
 	// useEffect(() => {
 	// 	const unsubscribe = auth.onAuthStateChanged(user => {
 	// 		setCurrentUser(user)
@@ -18,20 +20,29 @@ export function ConversationProvider({children}) {
 	// 	})
 	// 	return unsubscribe
 	// },[])
+	function setGroupConversationData(conversationIndex,groupMemberDetails){
+		setIsGroupChat(true)
+		setSelectedConversationIndex(conversationIndex)
+		setGroupMemberDetails(groupMemberDetails)
+	}
 
 	function setData(conversationIndex,userid,username){
+		setIsGroupChat(false)
 		setUserId(userid)
 		setUserName(username)
 		setSelectedConversationIndex(conversationIndex)
 	}
 
 	const value = {
+		isGroupChat,
 		showChat,
 		UserId,
 		userName,
 		selectedConversationIndex,
 		setData,
-		setShowChat
+		setShowChat,
+		setIsGroupChat,
+		setGroupConversationData
 	}
 
 	return (

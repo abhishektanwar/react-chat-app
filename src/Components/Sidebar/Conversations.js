@@ -5,6 +5,7 @@ import useFirestore from '../../Hooks/useFireStore'
 import useConversationData from '../../Hooks/useConversationData'
 import {firestore} from '../../Firebase/firebase'
 import ConversationComp from './ConversationComp'
+import GroupConversationComp from './GroupConversationComp'
 function Conversations() {
 	const {docs,conversationId} = useFirestore('users')
 	// console.log('docs',docs);
@@ -99,11 +100,15 @@ function Conversations() {
 					console.log(convRecepient[0])
 					if(convRecepient[0].recipients.length===2){
 						return(
+							// individual conversation
 							<ConversationComp userId={convRecepient[0].recipients} docs={docs} conversationId={convRecepient[0].id}/>
 						)
 					}else{
+						// group conversation
 						return(
-							<h2 style={{color:'white'}}>{convRecepient[0].id } group</h2>
+							// {console.log()}
+							// <h2 style={{color:'white'}}>{convRecepient[0].id } group</h2>
+							<h2><GroupConversationComp groupConvoDetails={convRecepient[0]} docs={docs}/></h2>
 						)
 					}
 					
