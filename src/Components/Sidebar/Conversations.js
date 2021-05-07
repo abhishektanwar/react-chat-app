@@ -11,7 +11,7 @@ function Conversations() {
 	// console.log('docs',docs);
 	// console.log('conversationId',conversationId,typeof conversationId);
 	// const {dataFromConversation} = useConversationData('conversations',docs)
-	const conversations=[]
+	let conversations=[]
 	const conversationArray=[]
 	const [loading,setLoading] = useState(true)
 	// res is conversation ids of logged in user
@@ -23,12 +23,16 @@ function Conversations() {
 	function handleConversationClick(){
 		console.log("a")
 	}
-	const data=[]
+	let data=[]
 	function dataFetcher(){
+		setLoading(false)
+		// conversations=[]
+		// data=[]
 		// conversations.push(docs[0].conversations)
 		// console.log(docs[0].conversations)
 		// taking conversation ids of loggedin user and putting all
 		// conversation in setRes/conversation
+		console.log("auto fethcer")
 		docs[0].conversations.forEach(conver => conversations.push(conver))
 		console.log(conversations)
 		setRes(conversations)
@@ -38,7 +42,7 @@ function Conversations() {
 		// 	dt = useConversationData('conversations',con)
 		// 	conversationsWithRecipients.push(dt)
 		// })
-		
+		// data=[]
 		conversations.forEach(convo=>{
 			
 			firestore.collection('conversations').onSnapshot((snap)=>{
@@ -75,39 +79,38 @@ function Conversations() {
 
 		// console.log('conversationsWithRecipients',conversationsWithRecipients)
 	}
-	useEffect(()=>{
-		// conversationsWithRecipients = useConversationData('conversations',conversations[0])
-		conversationsWithRecipients && 
-			conversationsWithRecipients.forEach(conv=>{
-				conv.forEach((con)=>{
-					console.log(con.recipients.length);
-				})
-			})
+	// useEffect(()=>{
+	// 	// conversationsWithRecipients = useConversationData('conversations',conversations[0])
+	// 	conversationsWithRecipients && 
+	// 		conversationsWithRecipients.forEach(conv=>{
+	// 			conv.forEach((con)=>{
+	// 				console.log(con.recipients.length);
+	// 			})
+	// 		})
 		
-	},[res,conversationsWithRecipients])
-
+	// },[res,conversationsWithRecipients])
+	// useEffect(() => {
+	// 	console.log("docs changed")
+		
+	// }, [docs])
 	useEffect(()=>{
-		// setTimeout(()=>{
-		// 	dataFetcher()
-		// },8000)
+		setLoading(true)
+		setTimeout(()=>{
+			// dataFetcher()
+			document.getElementById("btnn").click()
+		},5000)
 
 		
 	},[])
+	// console.log(document)
+	
 
 	
 	return (
+		<>
+			 
 		<div className="sidebar_chatbody">
-			{/* {console.log(Object.values(conversationsWithRecipients),"conversationsWithRecipients")}
-			{Object.values(conversationsWithRecipients).forEach(rec=>{
-				console.log(rec,"hjkl")
-			})} */}
-			{/* {conversationsWithRecipients && 
-				conversationsWithRecipients.forEach(conv=>{
-					conv.forEach((con)=>{
-						console.log(con.recipients.length);
-					})
-				})
-			} */}
+		{!loading ? <>
 			{clickState && 
 				conversationsWithRecipients.map(convRecepient =>{
 					console.log(convRecepient[0])
@@ -141,9 +144,14 @@ function Conversations() {
 			)
 		})} */}
 
-			<button id="btnn" onClick={dataFetcher}>clickme</button>
-			
+			</>
+		: 
+		<div>
+			<p style={{'color':'white','fontSize':'1.5rem' }}>Loading...</p>
+			<button id="btnn" onClick={dataFetcher} style={{'display':'none'}}>clickme</button></div>}
 		</div>
+		
+		</>
 	)
 }
 

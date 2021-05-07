@@ -29,6 +29,18 @@ const Login = () => {
 	}
 	return (
 		<div className="main_div">
+			<div className="creds">
+				<h2>Test Creds   </h2>
+				<div className="creds_inside">
+					<p>ID 1: l1@l.com</p>
+					<p>Pass 1:123456</p>
+				</div>
+				<div className="creds_inside">
+					<p>ID 1: l1@l.com</p>
+					<p>Pass 1:123456</p>
+				</div>
+
+			</div>
 			<div className="inner_div">
 				<div className="image_element"></div>
 				<form className="login_form">
@@ -49,6 +61,9 @@ const Login = () => {
 						Don't have an account? <Link to="/signup">Sign Up</Link>
 					</div>
 				</form>
+			</div>
+			<div>
+				
 			</div>
 		</div>
 	)

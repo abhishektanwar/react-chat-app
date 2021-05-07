@@ -7,16 +7,30 @@
 .main_div{
 	display: grid;
 	place-items: center;
+	
+}
+
+.creds{
+	display: flex;
+	flex-direction: column;
+	height: 17vh;
+}
+
+.creds_inside{
+	display: flex;
+	flex-direction: column;
 }
 
 .inner_div{
-	height: 100vh;
+	height: 83vh;
 	width: 100vw;
 	display: flex;
 	background-color:#15202B ;
 	justify-content: center;
 	align-items: center;
 	box-shadow: 0 50px 70px -20px rgba(0,0,0,0.8);
+
+
 }
 
 .image_element{

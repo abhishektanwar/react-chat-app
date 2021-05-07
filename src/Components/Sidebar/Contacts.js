@@ -65,7 +65,7 @@ function Contacts() {
 
 		)}
 		{console.log(docs)}
-			<button onClick={handleClick}>Click</button>
+			{/* <button onClick={handleClick}>Click</button> */}
 		</div>
 	)
 }
