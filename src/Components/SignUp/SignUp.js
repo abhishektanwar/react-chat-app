@@ -67,7 +67,7 @@ const SignUp = () => {
 					/>
 					<button type="submit" onClick={(e)=>{handleSignUp(e)}}>Sign Up</button>
 					<div id="signup-link">
-						Already have an account? <Link to="/signin">Login</Link>
+						Already have an account? <Link to="/login">Login</Link>
 					</div>
 				</form>
 			</div>

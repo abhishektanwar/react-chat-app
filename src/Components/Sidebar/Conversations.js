@@ -87,10 +87,14 @@ function Conversations() {
 	},[res,conversationsWithRecipients])
 
 	useEffect(()=>{
-		setTimeout(()=>{
-			dataFetcher()
-		},4000)
+		// setTimeout(()=>{
+		// 	dataFetcher()
+		// },8000)
+
+		
 	},[])
+
+	
 	return (
 		<div className="sidebar_chatbody">
 			{/* {console.log(Object.values(conversationsWithRecipients),"conversationsWithRecipients")}

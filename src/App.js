@@ -37,11 +37,11 @@ function App() {
         <AuthProvider>
           <div className="App">
             <Switch>
-              <PrivateRoute exact path="/" component = {()=><Home/>} />
+              <PrivateRoute exact path="/" component = {()=><Home />} />
               <Route  path="/login" component = {()=><Login showToast={showToast}/>} />
               <Route  path="/signup" component = {()=><SignUp showToast={showToast}/>} />
               <Route  path="/chat" component = {()=><Chat showToast={showToast}/>} />
-              {/* <Route exact path="/home" component = {()=><Home showToast={showToast}/>} /> */}
+              <Route exact path="/home" component = {()=><Home showToast={showToast}/>} />
             
             
             </Switch>

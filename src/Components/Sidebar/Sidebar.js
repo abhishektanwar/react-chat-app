@@ -10,6 +10,7 @@ import NewContactModal from './NewContactModal'
 import NewConversationModal from './NewConversationModal'
 import Modal from './Modal'
 import Conversations from './Conversations'
+import {useHistory} from 'react-router-dom'
 import Contacts from './Contacts'
 const CONVERSATIONS_KEY = 'conversations'
 const CONTACTS_KEY = 'contacts'
@@ -18,12 +19,15 @@ const Sidebar = ({setShow,setModalName}) => {
 	const {currentUser,logout} = useAuth()
 	const [activeKey,setActiveKey] = useState(CONTACTS_KEY)
 	const [modalOpen,setModalOpen] = useState(false)
+	const history = useHistory()
 	function handleActiveKey(key){
 		setActiveKey(key)
 	}
 	function handleLogout(e){
 		// e.preventDefault()
 		logout()
+		history.push('/login')
+
 	}
 	function handleModalShow(){
 		setShow(true)
@@ -54,12 +58,13 @@ const Sidebar = ({setShow,setModalName}) => {
 			</div>
 			{activeKey===CONTACTS_KEY ? <Contacts />:<Conversations />}
 			<div className="userId__display">
-			<button type="submit" onClick={handleLogout}>Logout</button>
+			{/* <button type="submit" onClick={handleLogout}>Logout</button> */}
 				Your Id: {currentUser.uid}
 			</div>
 			<div className="new__conversation__contact">
 				<button onClick={handleModalShow}>New {activeKey===CONTACTS_KEY ? 'Contact':'Conversation'}</button>
 			</div>
+			<button type="submit" onClick={handleLogout} className="logout-button">Logout</button>
 			{/* <Modal show={modalOpen} onHide={closeModal}>
 				{
 					activeKey === CONVERSATIONS_KEY ? 

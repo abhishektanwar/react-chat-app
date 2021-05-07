@@ -107,3 +107,10 @@
 	outline: none;
 	cursor: pointer;
 }
+
+.logout-button{
+	height: 40px;
+	background: red;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
